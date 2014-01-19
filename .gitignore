@@ -1,3 +1,8 @@
 assets/
 protected/runtime/
 themes/classic/views/
+vendor/
+.idea/
+composer.lock
+html/phpliteadmin.config.php
+html/phpliteadmin.php
