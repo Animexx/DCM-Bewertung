@@ -26,8 +26,6 @@ class CompetitionGroup extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name', 'safe'),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
 			array('id, name', 'safe', 'on'=>'search'),
 		);
 	}
@@ -37,9 +35,9 @@ class CompetitionGroup extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
+			'competitions' => array(self::HAS_MANY, 'Competition', 'group_id'),
+			'rating_criteria' => array(self::HAS_MANY, 'CompetitionRatingCriterion', 'competition_group_id'),
 		);
 	}
 
@@ -68,8 +66,6 @@ class CompetitionGroup extends CActiveRecord
 	 */
 	public function search()
 	{
-		// @todo Please modify the following code to remove attributes that should not be searched.
-
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);

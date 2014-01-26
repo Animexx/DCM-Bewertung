@@ -28,8 +28,6 @@ class CompetitionRating extends CActiveRecord
 		return array(
 			array('adjucator_id, participant_id', 'required'),
 			array('adjucator_id, participant_id, rating', 'numerical', 'integerOnly'=>true),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
 			array('adjucator_id, participant_id, rating', 'safe', 'on'=>'search'),
 		);
 	}
@@ -39,9 +37,10 @@ class CompetitionRating extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
+			'adjucator' => array(self::BELONGS_TO, "CompetitionAdjucator", "adjucator_id"),
+			'participant' => array(self::BELONGS_TO, "CompetitionParticipant", "participant-id"),
+			'rating_criterion' => array(self::BELONGS_TO, "CompetitionRatingCriterion", "adjucator_id"),
 		);
 	}
 

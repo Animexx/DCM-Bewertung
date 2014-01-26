@@ -29,9 +29,7 @@ class User extends CActiveRecord
 		return array(
 			array('animexx_id', 'numerical', 'integerOnly'=>true),
 			array('username, password', 'safe'),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
-			array('id, animexx_id, username, password', 'safe', 'on'=>'search'),
+			array('id, animexx_id, username', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -40,9 +38,9 @@ class User extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
+			'adjucator_of' => array(self::HAS_MANY, 'CompetitionAdjucator', 'user_id'),
+			'participating' => array(self::HAS_MANY, 'CompetitionParticipant', 'user_id'),
 		);
 	}
 
@@ -73,14 +71,11 @@ class User extends CActiveRecord
 	 */
 	public function search()
 	{
-		// @todo Please modify the following code to remove attributes that should not be searched.
-
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('animexx_id',$this->animexx_id);
 		$criteria->compare('username',$this->username,true);
-		$criteria->compare('password',$this->password,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -33,8 +33,6 @@ class Competition extends CActiveRecord
 		return array(
 			array('preliminary_of, animexx_event_id, max_participants, max_rating, group_id', 'numerical', 'integerOnly'=>true),
 			array('name, date', 'safe'),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
 			array('id, preliminary_of, animexx_event_id, name, date, max_participants, max_rating, group_id', 'safe', 'on'=>'search'),
 		);
 	}
@@ -44,9 +42,12 @@ class Competition extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
+			'competition_group' => array(self::BELONGS_TO, 'CompetitionGroup', 'group_id'),
+			'competition_preliminaries' => array(self::HAS_MANY, 'Competition', 'preliminary_of'),
+			'competition_final' => array(self::BELONGS_TO, 'Competition', 'preliminary_of'),
+			'adjucators' => array(self::HAS_MANY, 'CompetitionAdjucator', 'competition_id'),
+			'participants' => array(self::HAS_MANY, 'CompetitionParticipant', 'competition_id'),
 		);
 	}
 
@@ -81,8 +82,6 @@ class Competition extends CActiveRecord
 	 */
 	public function search()
 	{
-		// @todo Please modify the following code to remove attributes that should not be searched.
-
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);

@@ -9,7 +9,7 @@
  * @property string $name
  * @property string $data
  */
-class CompetitionParticipants extends CActiveRecord
+class CompetitionParticipant extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
@@ -30,9 +30,7 @@ class CompetitionParticipants extends CActiveRecord
 			array('competition_id, user_id', 'required'),
 			array('competition_id, user_id', 'numerical', 'integerOnly'=>true),
 			array('name, data', 'safe'),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
-			array('competition_id, user_id, name, data', 'safe', 'on'=>'search'),
+			array('competition_id, user_id, name', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -44,6 +42,8 @@ class CompetitionParticipants extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'competition' => array(self::BELONGS_TO, 'Competition', 'competition_id'),
+			'user' => array(self::BELONGS_TO, 'User', 'user_id'),
 		);
 	}
 
@@ -81,7 +81,6 @@ class CompetitionParticipants extends CActiveRecord
 		$criteria->compare('competition_id',$this->competition_id);
 		$criteria->compare('user_id',$this->user_id);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('data',$this->data,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -92,7 +91,7 @@ class CompetitionParticipants extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return CompetitionParticipants the static model class
+	 * @return CompetitionParticipant the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

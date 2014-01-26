@@ -1,4 +1,9 @@
-<?php /* @var $this Controller */ ?>
+<?php
+/**
+ * @var $this Controller
+ * @var string $content
+ */
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,18 +21,11 @@
 </head>
 <body>
 <div data-role="page" class="jqm-demos jqm-home">
-
-	<div data-role="header" class="jqm-header">
-		<p><?php echo CHtml::encode($this->pageTitle); ?></p>
+	<div data-role="header" data-position="fixed" data-id="heade">
 		<div data-role="navbar">
-			<ul>
-				<li><a href="#">One</a></li>
-				<li><a href="#">Two</a></li>
-				<li><a href="#">Three</a></li>
-			</ul>
-		</div><!-- /navbar -->
+			<a href="/" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext">Zurück</a>
+		</div>
 	</div>
-	<!-- /header -->
 
 	<div role="main" class="ui-content jqm-content">
 
@@ -36,6 +34,18 @@
 
 	</div>
 	<!-- /page -->
+
+	<div data-role="footer" data-position="fixed" data-id="footer">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#">One</a></li>
+				<li><a href="#">Two</a></li>
+				<li><a href="#">Three</a></li>
+			</ul>
+		</div>
+		<!-- /navbar -->
+	</div>
+	<!-- /header -->
 
 </body>
 </html>
