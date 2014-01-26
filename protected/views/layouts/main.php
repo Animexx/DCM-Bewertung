@@ -23,15 +23,12 @@
 <div data-role="page" class="jqm-demos jqm-home">
 	<div data-role="header" data-position="fixed" data-id="heade">
 		<div data-role="navbar">
-			<a href="/" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext">Zurück</a>
+			<a href="/" class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext">Zurück</a>
 		</div>
 	</div>
 
 	<div role="main" class="ui-content jqm-content">
-
-
 		<?php echo $content; ?>
-
 	</div>
 	<!-- /page -->
 

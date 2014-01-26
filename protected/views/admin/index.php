@@ -1,10 +1,10 @@
 <?php
-/* @var $this SiteController */
+/**
+ * @var $this AdminController
+ */
 
-$this->pageTitle=Yii::app()->name;
 ?>
 
-<form method="POST" action="./">
-
-	Person hinzufügen
-</form>
+<ul>
+	<li><a href="<?=Yii::app()->createUrl("admin/adjucators")?>">Juroren verwalten</a></li>
+</ul>

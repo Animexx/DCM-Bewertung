@@ -8,6 +8,7 @@
  * @property integer $animexx_id
  * @property string $username
  * @property string $password
+ * @property integer $sysadmin
  */
 class User extends CActiveRecord
 {
@@ -27,9 +28,9 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('animexx_id', 'numerical', 'integerOnly'=>true),
+			array('animexx_id, sysadmin', 'numerical', 'integerOnly'=>true),
 			array('username, password', 'safe'),
-			array('id, animexx_id, username', 'safe', 'on'=>'search'),
+			array('id, animexx_id, username, sysadmin', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,6 +55,7 @@ class User extends CActiveRecord
 			'animexx_id' => 'Animexx',
 			'username' => 'Username',
 			'password' => 'Password',
+			'sysadmin' => 'Systemadministrator'
 		);
 	}
 
