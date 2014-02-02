@@ -8,6 +8,7 @@
  * @property integer $competition_group_id
  * @property string $name
  * @property integer $order
+ * @property CompetitionGroup $competition_group
  */
 class CompetitionRatingCriterion extends CActiveRecord
 {

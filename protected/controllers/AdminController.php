@@ -1,10 +1,32 @@
 <?php
 
-class AdminController extends Controller
+class AdminController extends CommonCompetitionController
 {
 	public function actions()
 	{
 		return array();
+	}
+
+	public function filters() {
+		$filters = parent::filters();
+		// @TODO Rechte
+		return $filters;
+	}
+
+	public function actionGroupEdit() {
+		$errors = array();
+		$oks    = array();
+
+		if (AntiXSS::isTokenSet("save")) {
+
+		}
+
+
+		$this->render('groupEdit', array(
+			"errors"           => $errors,
+			"oks"              => $oks
+		));
+
 	}
 
 	public function actionUsers()
@@ -28,7 +50,7 @@ class AdminController extends Controller
 		}
 
 
-		$this->render('user-edit', array(
+		$this->render('userEdit', array(
 			"errors"           => $errors,
 			"oks"              => $oks,
 			"user"             => $user,
@@ -56,7 +78,7 @@ class AdminController extends Controller
 			}
 		}
 
-		$this->render('user-new', array(
+		$this->render('userNew', array(
 			"errors" => $errors,
 			"oks"    => $oks
 		));

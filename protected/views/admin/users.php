@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @var $this AdminController
+ * @var AdminController $this
  * @var User[] $users
  */
 

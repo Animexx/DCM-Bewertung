@@ -12,6 +12,11 @@
  * @property integer $max_participants
  * @property integer $max_rating
  * @property integer $group_id
+ * @property CompetitionGroup $competition_group
+ * @property Competition[] $competition_preliminaries
+ * @property Competition competition_final
+ * @property CompetitionAdjucator[] $adjucators
+ * @property CompetitionParticipant[] $participants
  */
 class Competition extends CActiveRecord
 {

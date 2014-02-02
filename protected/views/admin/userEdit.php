@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $this AdminController
+ * @var AdminController $this
  * @var string[] $oks
  * @var string[] $errors
  * @var User $user

@@ -71,9 +71,10 @@ return array(
 	),
 
 	// application-level parameters that can be accessed
-	// using Yii::app()->params['paramName']
+	// using Yii::app()->params['competitionGroup']
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
+		'competitionGroup' => 1
 	),
 );

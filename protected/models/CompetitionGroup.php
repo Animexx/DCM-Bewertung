@@ -6,6 +6,8 @@
  * The followings are the available columns in table 'competition_groups':
  * @property integer $id
  * @property string $name
+ * @property Competition[] $competitions
+ * @property CompetitionRatingCriterion[] $rating_criteria
  */
 class CompetitionGroup extends CActiveRecord
 {
