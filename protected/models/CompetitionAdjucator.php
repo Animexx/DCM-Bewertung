@@ -6,6 +6,8 @@
  * The followings are the available columns in table 'competition_adjucators':
  * @property integer $competition_id
  * @property integer $user_id
+ * @property Competition $competition
+ * @property User $user
  */
 class CompetitionAdjucator extends CActiveRecord
 {

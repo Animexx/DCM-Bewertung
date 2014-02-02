@@ -12,19 +12,8 @@ foreach ($errors as $error) {
 	echo '<div><span data-icon="delete"></span> ' . CHtml::encode($error) . '</div>';
 }
 ?>
-<h2>Juror hinzufügen</h2>
+<h2>Benutzer hinzufügen</h2>
 <form method="POST">
-	<label for="person_existierend" class="select"></label>
-	<select name="person_existierend" id="person_existierend">
-		<option value="">- neuen Nutzer anlegen -</option>
-		<?
-		/** @var User[] $users */
-		$users = User::model()->findAll();
-		foreach ($users as $user) {
-			echo "<option value='" . $user->id . "'>" . CHtml::encode($user->username) . '</option>';
-		}
-	?></select>
-
 	<label for="username">Neuer Nutzer: Benutzername</label>
 	<input type="text" name="username" id="username" value="">
 

@@ -9,6 +9,8 @@
  * @property string $username
  * @property string $password
  * @property integer $sysadmin
+ * @property CompetitionAdjucator[] $adjucator_of
+ * @property CompetitionParticipant[] $participating
  */
 class User extends CActiveRecord
 {
@@ -28,9 +30,9 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('animexx_id, sysadmin', 'numerical', 'integerOnly'=>true),
+			array('animexx_id, sysadmin', 'numerical', 'integerOnly' => true),
 			array('username, password', 'safe'),
-			array('id, animexx_id, username, sysadmin', 'safe', 'on'=>'search'),
+			array('id, animexx_id, username, sysadmin', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -40,7 +42,7 @@ class User extends CActiveRecord
 	public function relations()
 	{
 		return array(
-			'adjucator_of' => array(self::HAS_MANY, 'CompetitionAdjucator', 'user_id'),
+			'adjucator_of'  => array(self::HAS_MANY, 'CompetitionAdjucator', 'user_id'),
 			'participating' => array(self::HAS_MANY, 'CompetitionParticipant', 'user_id'),
 		);
 	}
@@ -51,11 +53,11 @@ class User extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
+			'id'         => 'ID',
 			'animexx_id' => 'Animexx',
-			'username' => 'Username',
-			'password' => 'Password',
-			'sysadmin' => 'Systemadministrator'
+			'username'   => 'Username',
+			'password'   => 'Password',
+			'sysadmin'   => 'Systemadministrator'
 		);
 	}
 
@@ -73,14 +75,14 @@ class User extends CActiveRecord
 	 */
 	public function search()
 	{
-		$criteria=new CDbCriteria;
+		$criteria = new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
-		$criteria->compare('animexx_id',$this->animexx_id);
-		$criteria->compare('username',$this->username,true);
+		$criteria->compare('id', $this->id);
+		$criteria->compare('animexx_id', $this->animexx_id);
+		$criteria->compare('username', $this->username, true);
 
 		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
+			'criteria' => $criteria,
 		));
 	}
 
@@ -90,7 +92,7 @@ class User extends CActiveRecord
 	 * @param string $className active record class name.
 	 * @return User the static model class
 	 */
-	public static function model($className=__CLASS__)
+	public static function model($className = __CLASS__)
 	{
 		return parent::model($className);
 	}
