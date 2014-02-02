@@ -7,6 +7,7 @@
  * @property integer $adjucator_id
  * @property integer $participant_id
  * @property integer $rating
+ * @property integer $order
  */
 class CompetitionRating extends CActiveRecord
 {
@@ -26,9 +27,9 @@ class CompetitionRating extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('adjucator_id, participant_id', 'required'),
-			array('adjucator_id, participant_id, rating', 'numerical', 'integerOnly'=>true),
-			array('adjucator_id, participant_id, rating', 'safe', 'on'=>'search'),
+			array('adjucator_id, participant_id, order', 'required'),
+			array('adjucator_id, participant_id, rating, order', 'numerical', 'integerOnly' => true),
+			array('adjucator_id, participant_id, rating, order', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -38,8 +39,8 @@ class CompetitionRating extends CActiveRecord
 	public function relations()
 	{
 		return array(
-			'adjucator' => array(self::BELONGS_TO, "CompetitionAdjucator", "adjucator_id"),
-			'participant' => array(self::BELONGS_TO, "CompetitionParticipant", "participant-id"),
+			'adjucator'        => array(self::BELONGS_TO, "CompetitionAdjucator", "adjucator_id"),
+			'participant'      => array(self::BELONGS_TO, "CompetitionParticipant", "participant-id"),
 			'rating_criterion' => array(self::BELONGS_TO, "CompetitionRatingCriterion", "adjucator_id"),
 		);
 	}
@@ -50,9 +51,10 @@ class CompetitionRating extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'adjucator_id' => 'Adjucator',
+			'adjucator_id'   => 'Adjucator',
 			'participant_id' => 'Participant',
-			'rating' => 'Rating',
+			'order'          => 'Position',
+			'rating'         => 'Rating',
 		);
 	}
 
@@ -72,14 +74,15 @@ class CompetitionRating extends CActiveRecord
 	{
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
-		$criteria=new CDbCriteria;
+		$criteria = new CDbCriteria;
 
-		$criteria->compare('adjucator_id',$this->adjucator_id);
-		$criteria->compare('participant_id',$this->participant_id);
-		$criteria->compare('rating',$this->rating);
+		$criteria->compare('adjucator_id', $this->adjucator_id);
+		$criteria->compare('participant_id', $this->participant_id);
+		$criteria->compare('order', $this->order);
+		$criteria->compare('rating', $this->rating);
 
 		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
+			'criteria' => $criteria,
 		));
 	}
 
@@ -89,7 +92,7 @@ class CompetitionRating extends CActiveRecord
 	 * @param string $className active record class name.
 	 * @return CompetitionRating the static model class
 	 */
-	public static function model($className=__CLASS__)
+	public static function model($className = __CLASS__)
 	{
 		return parent::model($className);
 	}

@@ -8,6 +8,7 @@
  * @property integer $competition_group_id
  * @property string $name
  * @property integer $order
+ * @property integer $max_rating
  * @property CompetitionGroup $competition_group
  */
 class CompetitionRatingCriterion extends CActiveRecord
@@ -28,7 +29,7 @@ class CompetitionRatingCriterion extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('competition_group_id, order', 'numerical', 'integerOnly'=>true),
+			array('competition_group_id, order, max_rating', 'numerical', 'integerOnly'=>true),
 			array('name', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

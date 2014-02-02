@@ -41,7 +41,7 @@
 	<!-- /page -->
 </div>
 
-<div data-role="footer" data-position="fixed" data-id="footer" data-theme="a">
+<div data-role="footer" data-position="fixed" data-id="footer" data-theme="a" id="page_footer" style="display: none;">
 	<div data-role="navbar">
 		<ul>
 			<li><a href="#">One</a></li>

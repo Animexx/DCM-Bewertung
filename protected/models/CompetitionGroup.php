@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'competition_groups':
  * @property integer $id
  * @property string $name
+ * @property integer $max_rating
  * @property Competition[] $competitions
  * @property CompetitionRatingCriterion[] $rating_criteria
  */
@@ -28,7 +29,7 @@ class CompetitionGroup extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name', 'safe'),
-			array('id, name', 'safe', 'on'=>'search'),
+			array('id, name', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -38,7 +39,7 @@ class CompetitionGroup extends CActiveRecord
 	public function relations()
 	{
 		return array(
-			'competitions' => array(self::HAS_MANY, 'Competition', 'group_id'),
+			'competitions'    => array(self::HAS_MANY, 'Competition', 'group_id'),
 			'rating_criteria' => array(self::HAS_MANY, 'CompetitionRatingCriterion', 'competition_group_id'),
 		);
 	}
@@ -49,8 +50,9 @@ class CompetitionGroup extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'name' => 'Name',
+			'id'         => 'ID',
+			'name'       => 'Name',
+			'max_rating' => 'Max Rating',
 		);
 	}
 
@@ -68,13 +70,13 @@ class CompetitionGroup extends CActiveRecord
 	 */
 	public function search()
 	{
-		$criteria=new CDbCriteria;
+		$criteria = new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
+		$criteria->compare('id', $this->id);
+		$criteria->compare('name', $this->name, true);
 
 		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
+			'criteria' => $criteria,
 		));
 	}
 
@@ -84,7 +86,7 @@ class CompetitionGroup extends CActiveRecord
 	 * @param string $className active record class name.
 	 * @return CompetitionGroup the static model class
 	 */
-	public static function model($className=__CLASS__)
+	public static function model($className = __CLASS__)
 	{
 		return parent::model($className);
 	}

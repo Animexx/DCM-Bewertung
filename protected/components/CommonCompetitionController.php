@@ -1,6 +1,7 @@
 <?php
 
 class CommonCompetitionController extends Controller {
+	/** @var null|CompetitionGroup */
 	protected $competition_group = null;
 
 	/**

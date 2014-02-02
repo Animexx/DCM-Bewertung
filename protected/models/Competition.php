@@ -10,7 +10,6 @@
  * @property string $name
  * @property string $date
  * @property integer $max_participants
- * @property integer $max_rating
  * @property integer $group_id
  * @property CompetitionGroup $competition_group
  * @property Competition[] $competition_preliminaries
@@ -36,9 +35,9 @@ class Competition extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('preliminary_of, animexx_event_id, max_participants, max_rating, group_id', 'numerical', 'integerOnly'=>true),
+			array('preliminary_of, animexx_event_id, max_participants, group_id', 'numerical', 'integerOnly'=>true),
 			array('name, date', 'safe'),
-			array('id, preliminary_of, animexx_event_id, name, date, max_participants, max_rating, group_id', 'safe', 'on'=>'search'),
+			array('id, preliminary_of, animexx_event_id, name, date, max_participants, group_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,7 +67,6 @@ class Competition extends CActiveRecord
 			'name' => 'Name',
 			'date' => 'Date',
 			'max_participants' => 'Max Participants',
-			'max_rating' => 'Max Rating',
 			'group_id' => 'Group',
 		);
 	}
@@ -95,7 +93,6 @@ class Competition extends CActiveRecord
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('date',$this->date,true);
 		$criteria->compare('max_participants',$this->max_participants);
-		$criteria->compare('max_rating',$this->max_rating);
 		$criteria->compare('group_id',$this->group_id);
 
 		return new CActiveDataProvider($this, array(

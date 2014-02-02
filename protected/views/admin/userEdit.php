@@ -40,7 +40,7 @@ foreach ($errors as $error) {
 
 	<br><br>
 
-	<button name="<?= AntiXSS::createToken("create") ?>" type="submit" class="ui-btn ui-icon-gear ui-btn-icon-left">
+	<button name="<?= AntiXSS::createToken("save") ?>" type="submit" class="ui-btn ui-icon-gear ui-btn-icon-left">
 		Speichern
 	</button>
 </form>
